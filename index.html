@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <!-- Favicon and App Icon Configuration -->
+    <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/r9uc72.jpg" />
+    <link rel="shortcut icon" href="https://files.catbox.moe/r9uc72.jpg" />
+    <link rel="apple-touch-icon" href="https://files.catbox.moe/r9uc72.jpg" />
+    
+    
+    <!-- Meta tags for theming and tiles -->
+    <meta name="theme-color" content="#0D0D2B">
+    <meta name="msapplication-TileColor" content="#0D0D2B">
+    <meta name="msapplication-TileImage" content="https://files.catbox.moe/r9uc72.jpg">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jiam Tech - Empowering the Future</title>
+    <link rel="icon" type="image/svg+xml" href="https://files.catbox.moe/r9uc72.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#0D0D2B', // Very dark blue, almost black
+              'brand-secondary': '#1A1A3D', // Dark blue
+              'brand-accent': '#00D5F7', // Vibrant Cyan from logo
+              'brand-accent-hover': '#00B8D4', // Darker Cyan
+              'brand-text-primary': '#FFFFFF',
+              'brand-text-secondary': '#A0AEC0',
+            },
+            animation: {
+              'gradient-x': 'gradient-x 15s ease infinite',
+              'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+              'zoom-in': 'zoom-in 0.6s ease-out forwards',
+              'icon-pulse': 'icon-pulse 0.8s ease-out forwards',
+            },
+            keyframes: {
+              'gradient-x': {
+                '0%, 100%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' },
+              },
+               'fade-in-up': {
+                '0%': {
+                  opacity: '0',
+                  transform: 'translateY(20px)',
+                },
+                '100%': {
+                  opacity: '1',
+                  transform: 'translateY(0)',
+                },
+              },
+              'zoom-in': {
+                '0%': {
+                  opacity: '0',
+                  transform: 'scale(0.5)',
+                },
+                '100%': {
+                  opacity: '1',
+                  transform: 'scale(1)',
+                },
+              },
+              'icon-pulse': {
+                '0%': {
+                  opacity: '0',
+                  transform: 'scale(0.6)',
+                },
+                '50%': {
+                  opacity: '1',
+                  transform: 'scale(1.1)',
+                },
+                '100%': {
+                  transform: 'scale(1)',
+                },
+              },
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^0.12.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^6.24.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>
