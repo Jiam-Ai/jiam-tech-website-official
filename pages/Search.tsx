@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with named imports to resolve component and hook errors.
-import { useSearchParams, Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { useBlog } from '../contexts/BlogContext';
 import { BlogPost } from '../types';
 
@@ -21,7 +20,7 @@ const SearchResultCard: React.FC<{ post: BlogPost }> = ({ post }) => {
 
 
 const Search: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams] = ReactRouterDOM.useSearchParams();
   const { posts: allPosts, loading } = useBlog();
   const [results, setResults] = useState<BlogPost[]>([]);
   const query = searchParams.get('q') || '';
@@ -57,9 +56,9 @@ const Search: React.FC = () => {
               <div className="space-y-8">
                 <p className="text-brand-text-secondary mb-4">{results.length} result{results.length !== 1 ? 's' : ''} found.</p>
                 {results.map(post => (
-                  <Link to={`/blog/${post.slug}`} key={post.slug} className="block group">
+                  <ReactRouterDOM.Link to={`/blog/${post.slug}`} key={post.slug} className="block group">
                     <SearchResultCard post={post} />
-                  </Link>
+                  </ReactRouterDOM.Link>
                 ))}
               </div>
             ) : (

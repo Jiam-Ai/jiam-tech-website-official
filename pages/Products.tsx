@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { PRODUCTS_DATA } from '../constants';
 
 const Products: React.FC = () => {
@@ -26,7 +26,7 @@ const Products: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PRODUCTS_DATA.map((product) => (
-              <Link
+              <ReactRouterDOM.Link
                 key={product.title}
                 to={`/products/${product.slug}`}
                 className="block group bg-brand-secondary rounded-lg shadow-lg border border-transparent hover:border-brand-accent/50 transition-all duration-300 transform hover:-translate-y-2 flex flex-col overflow-hidden"
@@ -56,7 +56,7 @@ const Products: React.FC = () => {
                     </a>
                   </div>
                 </div>
-              </Link>
+              </ReactRouterDOM.Link>
             ))}
           </div>
         </div>

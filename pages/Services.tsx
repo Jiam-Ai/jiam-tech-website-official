@@ -1,10 +1,5 @@
-
-
-
-
 import React, { useEffect } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'useLocation' to resolve hook access errors.
-import { useLocation } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { SERVICES_DATA } from '../constants';
 
 const createSlug = (title: string) => {
@@ -18,7 +13,7 @@ const createSlug = (title: string) => {
 };
 
 const Services: React.FC = () => {
-    const location = useLocation();
+    const location = ReactRouterDOM.useLocation();
 
     useEffect(() => {
         if (location.hash) {

@@ -1,10 +1,5 @@
-
-
-
-
 import React, { useState, useEffect } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { init as initAnalytics } from '../services/analytics';
 
 const CookieConsent: React.FC = () => {
@@ -45,9 +40,9 @@ const CookieConsent: React.FC = () => {
             <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p className="text-sm text-brand-text-secondary text-center sm:text-left">
                     We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies. Read our{' '}
-                    <Link to="/privacy" className="text-brand-accent hover:underline font-semibold">
+                    <ReactRouterDOM.Link to="/privacy" className="text-brand-accent hover:underline font-semibold">
                         Privacy Policy
-                    </Link>
+                    </ReactRouterDOM.Link>
                     .
                 </p>
                 <div className="flex-shrink-0 flex gap-3">

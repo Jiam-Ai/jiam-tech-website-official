@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { SERVICES_DATA, TESTIMONIALS_DATA, DIFFERENTIATORS_DATA } from '../constants';
 import TwitterFeed from '../components/TwitterFeed';
 import FAQ from '../components/FAQ';
@@ -68,12 +67,12 @@ const ServiceCard: React.FC<{ service: typeof SERVICES_DATA[0], index: number }>
                 <p className="text-brand-text-secondary">{service.description}</p>
             </div>
             <div className="mt-6 text-center">
-                 <Link
+                 <ReactRouterDOM.Link
                     to={`/services#${createSlug(service.title)}`}
                     className="font-bold text-brand-accent hover:text-brand-accent-hover transition-colors"
                 >
                     View More &rarr;
-                </Link>
+                </ReactRouterDOM.Link>
             </div>
         </div>
     );
@@ -133,13 +132,13 @@ const Home: React.FC = () => {
           >
             Jiam tech delivers cutting-edge artificial intelligence solutions to drive innovation, efficiency, and growth for businesses worldwide.
           </p>
-          <Link
+          <ReactRouterDOM.Link
             to="/services"
             className="inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-brand-accent-hover transition-transform transform hover:scale-105 opacity-0 animate-fade-in-up"
             style={{ animationDelay: '0.6s' }}
           >
             Explore Our Services
-          </Link>
+          </ReactRouterDOM.Link>
         </div>
       </section>
 

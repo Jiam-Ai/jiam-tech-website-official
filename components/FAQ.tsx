@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { FAQ_DATA, ICONS } from '../constants';
 
 const AnswerParser: React.FC<{ text: string }> = ({ text }) => {
@@ -21,9 +20,9 @@ const AnswerParser: React.FC<{ text: string }> = ({ text }) => {
         const linkPath = match[2].substring(1); // remove the leading '#'
         
         parts.push(
-            <Link key={match.index} to={linkPath} className="text-brand-accent hover:underline font-semibold transition-colors">
+            <ReactRouterDOM.Link key={match.index} to={linkPath} className="text-brand-accent hover:underline font-semibold transition-colors">
                 {linkText}
-            </Link>
+            </ReactRouterDOM.Link>
         );
         lastIndex = linkRegex.lastIndex;
     }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with named imports to resolve component and hook errors.
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { useBlog } from '../contexts/BlogContext';
 import { BlogPost as BlogPostType } from '../types';
 import { ICONS } from '../constants';
@@ -65,8 +64,8 @@ const ShareButton: React.FC<{ href: string; children: React.ReactNode; label: st
 
 
 const BlogPost: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
-    const navigate = useNavigate();
+    const { slug } = ReactRouterDOM.useParams<{ slug: string }>();
+    const navigate = ReactRouterDOM.useNavigate();
     const { posts, loading, error } = useBlog();
     const [post, setPost] = useState<BlogPostType | null>(null);
 
@@ -99,9 +98,9 @@ const BlogPost: React.FC = () => {
                     <div className="max-w-4xl mx-auto text-center py-16 bg-brand-secondary rounded-lg">
                         <h2 className="text-2xl font-bold text-red-500">Could Not Load Post</h2>
                         <p className="mt-2 text-brand-text-secondary">{error}</p>
-                        <Link to="/blog" className="mt-8 inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-brand-accent-hover transition-colors">
+                        <ReactRouterDOM.Link to="/blog" className="mt-8 inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-brand-accent-hover transition-colors">
                             &larr; Back to Blog
-                        </Link>
+                        </ReactRouterDOM.Link>
                     </div>
                 </div>
             </div>
@@ -167,9 +166,9 @@ const BlogPost: React.FC = () => {
                     </div>
 
                     <div className="mt-12 text-center">
-                        <Link to="/blog" className="inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-brand-accent-hover transition-transform transform hover:scale-105">
+                        <ReactRouterDOM.Link to="/blog" className="inline-block bg-brand-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-brand-accent-hover transition-transform transform hover:scale-105">
                             &larr; Back to Blog
-                        </Link>
+                        </ReactRouterDOM.Link>
                     </div>
                 </article>
             </div>

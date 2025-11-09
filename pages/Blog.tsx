@@ -1,6 +1,5 @@
 import React from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { useBlog } from '../contexts/BlogContext';
 
 const BlogCardSkeleton: React.FC = () => (
@@ -51,7 +50,7 @@ const Blog: React.FC = () => {
                 {/* Featured Post */}
                 <div className="mb-16">
                     <h2 className="text-3xl font-bold mb-8 text-brand-accent">Featured Article</h2>
-                    <Link to={`/blog/${posts[0].slug}`} className="block group">
+                    <ReactRouterDOM.Link to={`/blog/${posts[0].slug}`} className="block group">
                         <div className="grid md:grid-cols-2 gap-8 items-center bg-brand-secondary rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-brand-accent/20">
                             <img src={posts[0].imageUrl} alt={posts[0].title} className="w-full h-full object-cover min-h-[300px] md:min-h-[350px]" />
                             <div className="p-8 md:p-12">
@@ -62,7 +61,7 @@ const Blog: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                    </ReactRouterDOM.Link>
                 </div>
 
                 {posts.length > 1 && (
@@ -70,7 +69,7 @@ const Blog: React.FC = () => {
                         <h3 className="text-3xl font-bold mb-8 border-t border-brand-accent/20 pt-12">More Articles</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {posts.slice(1).map((post) => (
-                                <Link to={`/blog/${post.slug}`} key={post.slug} className="block group">
+                                <ReactRouterDOM.Link to={`/blog/${post.slug}`} key={post.slug} className="block group">
                                 <div className="bg-brand-secondary rounded-lg shadow-lg overflow-hidden flex flex-col h-full transform transition-transform duration-300 group-hover:-translate-y-2">
                                     <img src={post.imageUrl} alt={post.title} className="w-full h-48 object-cover" />
                                     <div className="p-6 flex-grow flex flex-col">
@@ -81,7 +80,7 @@ const Blog: React.FC = () => {
                                     </div>
                                     </div>
                                 </div>
-                                </Link>
+                                </ReactRouterDOM.Link>
                             ))}
                         </div>
                     </>

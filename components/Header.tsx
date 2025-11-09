@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with named imports to resolve component and hook errors.
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { NAV_LINKS, ICONS } from '../constants';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = ReactRouterDOM.useLocation();
+  const navigate = ReactRouterDOM.useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -77,7 +76,7 @@ const Header: React.FC = () => {
               );
             }
             return (
-              <NavLink
+              <ReactRouterDOM.NavLink
                 key={link.name}
                 to={link.path.substring(1)}
                 className={({ isActive }) =>
@@ -87,7 +86,7 @@ const Header: React.FC = () => {
                 }
               >
                 {link.name}
-              </NavLink>
+              </ReactRouterDOM.NavLink>
             );
           })}
         </nav>
@@ -117,12 +116,12 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
-               <NavLink to="/" className="flex items-center text-white focus:outline-none">
+               <ReactRouterDOM.NavLink to="/" className="flex items-center text-white focus:outline-none">
                 <ICONS.LogoIcon className="h-8 w-auto mr-2" />
                 <span className="text-2xl font-bold">
                   Jiam <span className="text-brand-accent">Tech</span>
                 </span>
-              </NavLink>
+              </ReactRouterDOM.NavLink>
             </div>
             
             {/* Desktop Navigation */}
@@ -144,7 +143,7 @@ const Header: React.FC = () => {
                     );
                   }
                   return (
-                    <NavLink
+                    <ReactRouterDOM.NavLink
                       key={link.name}
                       to={link.path.substring(1)}
                       className={({ isActive }) =>
@@ -154,7 +153,7 @@ const Header: React.FC = () => {
                       }
                     >
                       {link.name}
-                    </NavLink>
+                    </ReactRouterDOM.NavLink>
                   );
                 })}
               </nav>

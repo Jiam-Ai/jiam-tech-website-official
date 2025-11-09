@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { getChatInstance, sendMessageToGeminiStream, resetChat } from '../services/geminiService';
 import { ChatMessage, MessageAuthor } from '../types';
 import { FunctionCall, Part } from '@google/genai';
@@ -25,7 +24,7 @@ const MessageRenderer: React.FC<{ text: string }> = ({ text }) => {
                     const punctuation = part.substring(cleanPart.length);
                     return (
                         <React.Fragment key={index}>
-                            <Link to={cleanPart.substring(1)} className="text-brand-accent hover:underline">{cleanPart}</Link>
+                            <ReactRouterDOM.Link to={cleanPart.substring(1)} className="text-brand-accent hover:underline">{cleanPart}</ReactRouterDOM.Link>
                             {punctuation}
                         </React.Fragment>
                     );

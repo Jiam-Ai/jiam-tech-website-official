@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { PRODUCTS_DATA } from '../constants';
 import { Product as ProductType } from '../types';
 
 const ProductDetail: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
-    const navigate = useNavigate();
+    const { slug } = ReactRouterDOM.useParams<{ slug: string }>();
+    const navigate = ReactRouterDOM.useNavigate();
     const [product, setProduct] = useState<ProductType | null>(null);
 
     useEffect(() => {
@@ -32,9 +32,9 @@ const ProductDetail: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="max-w-5xl mx-auto">
                     <div className="mb-8">
-                        <Link to="/products" className="text-brand-accent hover:text-brand-accent-hover transition-colors font-semibold">
+                        <ReactRouterDOM.Link to="/products" className="text-brand-accent hover:text-brand-accent-hover transition-colors font-semibold">
                             &larr; Back to All Products
-                        </Link>
+                        </ReactRouterDOM.Link>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 items-start bg-brand-secondary p-8 rounded-lg shadow-2xl">

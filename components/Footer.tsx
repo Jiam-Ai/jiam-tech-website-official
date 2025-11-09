@@ -1,6 +1,5 @@
 import React from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with a named import for 'Link' to resolve component access errors.
-import { Link } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { NAV_LINKS, ICONS } from '../constants';
 
 const SocialIcon: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
@@ -55,9 +54,9 @@ const Footer: React.FC = () => {
                                                 {link.name}
                                             </a>
                                         ) : (
-                                            <Link to={link.path.substring(1)} className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">
+                                            <ReactRouterDOM.Link to={link.path.substring(1)} className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">
                                                 {link.name}
-                                            </Link>
+                                            </ReactRouterDOM.Link>
                                         )}
                                     </li>
                                 )
@@ -67,8 +66,8 @@ const Footer: React.FC = () => {
                      <div>
                         <h3 className="text-lg font-semibold text-white">Legal</h3>
                         <ul className="mt-4 space-y-2">
-                            <li><Link to="/privacy" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">Privacy Policy</Link></li>
-                            <li><Link to="/terms" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">Terms of Service</Link></li>
+                            <li><ReactRouterDOM.Link to="/privacy" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">Privacy Policy</ReactRouterDOM.Link></li>
+                            <li><ReactRouterDOM.Link to="/terms" className="text-sm text-brand-text-secondary hover:text-brand-accent transition-colors duration-300">Terms of Service</ReactRouterDOM.Link></li>
                         </ul>
                     </div>
                     <div>

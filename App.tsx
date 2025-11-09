@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-// FIX: Replaced namespace import for 'react-router-dom' with named imports to resolve component and hook errors.
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -32,29 +31,29 @@ const LoadingFallback: React.FC = () => (
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <ReactRouterDOM.HashRouter>
       <AnalyticsTracker />
       <BlogProvider>
         <div className="bg-brand-primary min-h-screen flex flex-col font-sans">
           <Header />
           <main className="flex-grow">
               <Suspense fallback={<LoadingFallback />}>
-                  <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/services" element={<Services />} />
-                      <Route path="/solutions" element={<Solutions />} />
-                      <Route path="/products" element={<Products />} />
-                      <Route path="/products/:slug" element={<ProductDetail />} />
-                      <Route path="/careers" element={<Careers />} />
-                      <Route path="/blog" element={<Blog />} />
-                      <Route path="/blog/:slug" element={<BlogPostPage />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/privacy" element={<PrivacyPolicy />} />
-                      <Route path="/terms" element={<TermsOfService />} />
-                      <Route path="/thank-you" element={<ThankYou />} />
-                      <Route path="/search" element={<Search />} />
-                  </Routes>
+                  <ReactRouterDOM.Routes>
+                      <ReactRouterDOM.Route path="/" element={<Home />} />
+                      <ReactRouterDOM.Route path="/about" element={<About />} />
+                      <ReactRouterDOM.Route path="/services" element={<Services />} />
+                      <ReactRouterDOM.Route path="/solutions" element={<Solutions />} />
+                      <ReactRouterDOM.Route path="/products" element={<Products />} />
+                      <ReactRouterDOM.Route path="/products/:slug" element={<ProductDetail />} />
+                      <ReactRouterDOM.Route path="/careers" element={<Careers />} />
+                      <ReactRouterDOM.Route path="/blog" element={<Blog />} />
+                      <ReactRouterDOM.Route path="/blog/:slug" element={<BlogPostPage />} />
+                      <ReactRouterDOM.Route path="/contact" element={<Contact />} />
+                      <ReactRouterDOM.Route path="/privacy" element={<PrivacyPolicy />} />
+                      <ReactRouterDOM.Route path="/terms" element={<TermsOfService />} />
+                      <ReactRouterDOM.Route path="/thank-you" element={<ThankYou />} />
+                      <ReactRouterDOM.Route path="/search" element={<Search />} />
+                  </ReactRouterDOM.Routes>
               </Suspense>
           </main>
           <Footer />
@@ -62,7 +61,7 @@ const App: React.FC = () => {
           <CookieConsent />
         </div>
       </BlogProvider>
-    </HashRouter>
+    </ReactRouterDOM.HashRouter>
   );
 };
 
