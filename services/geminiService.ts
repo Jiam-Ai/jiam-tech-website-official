@@ -8,21 +8,6 @@ const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 let chat: Chat | null = null;
 
-const searchBlogFunctionDeclaration: FunctionDeclaration = {
-  name: 'searchBlog',
-  parameters: {
-    type: Type.OBJECT,
-    description: 'Searches the Jiam tech blog for posts matching a query.',
-    properties: {
-      query: {
-        type: Type.STRING,
-        description: 'The search term to look for in blog post titles or content.',
-      },
-    },
-    required: ['query'],
-  },
-};
-
 export const getChatInstance = (): Chat => {
   if (!chat) {
     chat = ai.chats.create({
@@ -37,9 +22,7 @@ export const getChatInstance = (): Chat => {
 
         **Functionality:**
         - **Proactively provide links** to relevant pages on the website. Always format links as raw hash paths, for example: "You can learn more on our services page: /#/services". The UI will make these clickable.
-        - **You can search the blog!** If a user asks a question about a specific AI topic, or asks to find articles, you **must** use the \`searchBlog\` tool. For example, if a user asks "do you have any articles about LLMs?", you should use the tool with the query "LLMs".
-        - When presenting blog search results, format them as a clear, numbered list. For each result, include the title and a link to the post using its slug, like this: "1. **Post Title** - Read more here: /#/blog/slug-goes-here".
-        - **If the blog search returns no results**, inform the user politely that you couldn't find any articles on that topic and suggest they try a different search term or explore our services.
+        - If a user asks about blog posts or articles on a topic, direct them to the main blog page: "I can't search for specific topics, but you can explore all our latest articles and insights on our blog page: /#/blog".
         - **Be helpful!** If you are unable to answer a user's question or fulfill their request after two attempts in a conversation, politely apologize and suggest they get in touch with our team directly via the contact page. Provide the link like this: "I'm sorry, I'm having trouble assisting with that. For more detailed help, please reach out to our team on the contact page: /#/contact".
 
         **Available Pages:**
@@ -87,7 +70,6 @@ export const getChatInstance = (): Chat => {
         - TikTok: https://www.tiktok.com/@jiam.tech
         - YouTube: https://youtube.com/@jiamtech
         - WhatsApp: https://wa.me/23277931814`,
-        tools: [{functionDeclarations: [searchBlogFunctionDeclaration]}],
       },
     });
   }

@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 import { getChatInstance, sendMessageToGeminiStream, resetChat } from '../services/geminiService';
 import { ChatMessage, MessageAuthor } from '../types';
-import { FunctionCall, Part } from '@google/genai';
-import { useBlog } from '../contexts/BlogContext';
 import { ICONS } from '../constants';
 
 // Helper component to render message content with Markdown and links
@@ -57,13 +55,12 @@ const Chatbot: React.FC = () => {
         { 
             author: MessageAuthor.ASSISTANT, 
             text: "Hello! I'm Jiam Tech's virtual assistant. I can answer questions about our services, company, and even search our blog for you. What can I help with?",
-            quickReplies: ["Tell me about Jiam Tech", "What services do you offer?", "Search the blog"]
+            quickReplies: ["Tell me about Jiam Tech", "What services do you offer?"]
         }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const chatEndRef = useRef<HTMLDivElement>(null);
-    const { posts: blogPosts } = useBlog();
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -75,7 +72,7 @@ const Chatbot: React.FC = () => {
             { 
                 author: MessageAuthor.ASSISTANT, 
                 text: "Hello! I'm Jiam Tech's virtual assistant. How can I help you today?",
-                quickReplies: ["Tell me about Jiam Tech", "What services do you offer?", "Search the blog"]
+                quickReplies: ["Tell me about Jiam Tech", "What services do you offer?"]
             }
         ]);
     };
@@ -93,8 +90,6 @@ const Chatbot: React.FC = () => {
         try {
             const stream = await sendMessageToGeminiStream(messageToSend);
             
-            let functionCalls: FunctionCall[] | undefined;
-
             for await (const chunk of stream) {
                 const chunkText = chunk.text;
                 if(chunkText) {
@@ -107,48 +102,7 @@ const Chatbot: React.FC = () => {
                         return updatedMessages;
                     });
                 }
-                if (chunk.functionCalls) {
-                    functionCalls = chunk.functionCalls;
-                }
             }
-            
-            if (functionCalls && functionCalls.length > 0) {
-                setMessages(prev => [...prev, { author: MessageAuthor.ASSISTANT, text: "" }]);
-                const fc = functionCalls[0];
-                if (fc.name === 'searchBlog' && fc.args.query) {
-                    const query = fc.args.query as string;
-                    
-                    const searchResults = blogPosts.filter(p => 
-                        p.title.toLowerCase().includes(query.toLowerCase()) || 
-                        p.content.toLowerCase().includes(query.toLowerCase())
-                    ).slice(0, 3); // Limit to 3 results
-
-                    const toolResult: Part = {
-                        functionResponse: {
-                            name: 'searchBlog',
-                            response: {
-                                results: searchResults.map(p => ({ title: p.title, slug: p.slug, excerpt: p.excerpt }))
-                            }
-                        }
-                    };
-                    
-                    const finalStream = await sendMessageToGeminiStream([toolResult]);
-                    for await (const chunk of finalStream) {
-                        const chunkText = chunk.text;
-                         if(chunkText) {
-                            setMessages(prev => {
-                                const lastMessage = prev[prev.length - 1];
-                                const updatedMessages = [...prev];
-                                if(lastMessage.author === MessageAuthor.ASSISTANT) {
-                                    updatedMessages[prev.length - 1] = { ...lastMessage, text: lastMessage.text + chunkText };
-                                }
-                                return updatedMessages;
-                            });
-                        }
-                    }
-                }
-            }
-
         } catch (error) {
             console.error(error);
             const errorMessage: ChatMessage = { author: MessageAuthor.ASSISTANT, text: "I'm sorry, but I'm having trouble connecting right now. Please try again later." };

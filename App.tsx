@@ -21,7 +21,6 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
-const Search = lazy(() => import('./pages/Search'));
 
 const LoadingFallback: React.FC = () => (
     <div className="flex justify-center items-center h-screen bg-brand-primary text-white">
@@ -52,7 +51,6 @@ const App: React.FC = () => {
                       <ReactRouterDOM.Route path="/privacy" element={<PrivacyPolicy />} />
                       <ReactRouterDOM.Route path="/terms" element={<TermsOfService />} />
                       <ReactRouterDOM.Route path="/thank-you" element={<ThankYou />} />
-                      <ReactRouterDOM.Route path="/search" element={<Search />} />
                   </ReactRouterDOM.Routes>
               </Suspense>
           </main>

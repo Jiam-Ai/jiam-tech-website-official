@@ -6,18 +6,6 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = ReactRouterDOM.useLocation();
-  const navigate = ReactRouterDOM.useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery('');
-      setIsOpen(false); // Close mobile menu on search
-    }
-  };
-
 
   // Handle scroll effect for header background
   useEffect(() => {
@@ -90,22 +78,6 @@ const Header: React.FC = () => {
             );
           })}
         </nav>
-        <div className="mt-12 w-full max-w-xs">
-          <form onSubmit={handleSearchSubmit}>
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search blog..."
-                className="w-full bg-brand-secondary border border-brand-accent/30 rounded-full py-3 px-5 text-lg text-white placeholder-brand-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-accent"
-              />
-              <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-text-secondary hover:text-white">
-                <ICONS.Search className="w-6 h-6" />
-              </button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   );
@@ -157,24 +129,6 @@ const Header: React.FC = () => {
                   );
                 })}
               </nav>
-
-              {/* Search Bar */}
-              <div className="ml-4">
-                <form onSubmit={handleSearchSubmit}>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search blog..."
-                      className="bg-brand-secondary border border-brand-accent/30 rounded-full px-4 py-1.5 text-sm text-white placeholder-brand-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all w-40 focus:w-64"
-                    />
-                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-text-secondary hover:text-white" aria-label="Search">
-                      <ICONS.Search className="w-4 h-4" />
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
 
             {/* Mobile Menu Button */}
